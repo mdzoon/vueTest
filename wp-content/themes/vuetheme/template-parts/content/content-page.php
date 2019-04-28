@@ -22,6 +22,7 @@
 	<h1>Test for Vue space</h1>
 	<div id="app">
 	</div>
+
 		<?php
 		the_content();
 
