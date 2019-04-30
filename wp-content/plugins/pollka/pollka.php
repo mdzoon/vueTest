@@ -15,8 +15,8 @@ if ( !class_exists( 'PollkaKing' ) ) {
         public function register() {
             add_shortcode( $this->shortcode_name, [$this, 'shortcode'] );
             add_action( 'wp_enqueue_scripts', [$this, 'scripts'] );
-            add_action( 'wp_ajax_nonpriv_pk_submit_poll', [$this, 'submit_poll'] );
-            add_action( 'wp_ajax_nonpriv_pk_get_poll_data', [$this, 'get_poll_data'] );
+            add_action( 'wp_ajax_nopriv_pk_submit_poll', [$this, 'submit_poll'] );
+            add_action( 'wp_ajax_nopriv_pk_get_poll_data', [$this, 'get_poll_data'] );
         }
 
         public function shortcode( $atts ) { 
@@ -37,14 +37,14 @@ if ( !class_exists( 'PollkaKing' ) ) {
             return "<div data-pk-atts='{$vue_atts}'>loading poll...</div>";
         }
 
+        // Only enqueue scripts if we're displaying a post that contains the shortcode 
         public function scripts() {
             global $post;
-            // Only enqueue scripts if we're displaying a post that contains the shortcode 
             if( has_shortcode( $post->post_content, $this->shortcode_name ) ) {
-                wp_enqueue_script( 'vue', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js', [], '2.5.16' );
+               // wp_enqueue_script( 'vue', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js', [], '2.5.16' );
                 wp_enqueue_script( 'pollka-king', plugin_dir_url( __FILE__ ) . 'js/pollka-king.js', [], '0.1', true );
-                wp_enqueue_style( 'pollka-king', plugin_dir_url( __FILE__ ) . 'css/pollka-king.css', [], '0.1' );
                 wp_add_inline_script( 'pollka-king', 'window.ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '"');
+                wp_enqueue_style( 'pollka-king', plugin_dir_url( __FILE__ ) . 'css/pollka-king.css', [], '0.1' );
             }
         }
 
