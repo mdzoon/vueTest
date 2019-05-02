@@ -40,11 +40,14 @@ if ( !class_exists( 'PollkaKing' ) ) {
         // Only enqueue scripts if we're displaying a post that contains the shortcode 
         public function scripts() {
             global $post;
-            if( has_shortcode( $post->post_content, $this->shortcode_name ) ) {
-               // wp_enqueue_script( 'vue', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js', [], '2.5.16' );
-                wp_enqueue_script( 'pollka-king', plugin_dir_url( __FILE__ ) . 'js/pollka-king.js', [], '0.1', true );
-                wp_add_inline_script( 'pollka-king', 'window.ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '"');
-                wp_enqueue_style( 'pollka-king', plugin_dir_url( __FILE__ ) . 'css/pollka-king.css', [], '0.1' );
+            if( is_object($post) ) {
+                if( isset( $post->post_content, $this->shortcode_name ) && has_shortcode( $post->post_content, $this->shortcode_name ) ) {
+                    // wp_enqueue_script( 'vue', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js', [], '2.5.16' );
+                     wp_enqueue_script( 'pollka-king', plugin_dir_url( __FILE__ ) . 'js/pollka-king.js', [], '0.1', true );
+                     wp_add_inline_script( 'pollka-king', 'window.ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '"');
+                     wp_enqueue_style( 'pollka-king', plugin_dir_url( __FILE__ ) . 'css/pollka-king.css', [], '0.1' );
+                 }
+                 var_dump( $this->$shortcode_name ); //debug
             }
         }
 
