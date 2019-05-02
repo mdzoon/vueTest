@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+        
+    <div class="badge-container">
+      <div v-for="badge in markers" :key="badge.name">
+        <Badge :name="badge.name" :image="badge.image" />
+      </div>
+    </div>
+    <Map v-if="markers.length > 0" :markers="markers" />
+        
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Badge from './components/Badge.vue'
+import Map from './components/Map.vue'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      markers: [];
+    }
+  },
   components: {
-    HelloWorld
+    Badge,
+    Map
   }
+},
+mounted() {
+  fetch('http://localhost/vueTest/wp-json/markers/v1/post')
+    .then( (r) => r.json() )
+    .then( (res) => this.markers = res.map(x => x.acf) );
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
