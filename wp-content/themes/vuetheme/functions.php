@@ -12,13 +12,13 @@ if ( !function_exists( 'ms_theme_editor_parent_css' ) ):
 endif;
 add_action( 'wp_enqueue_scripts', 'ms_theme_editor_parent_css', 10 );
 
-if ( !function_exists( 'vue_pollka_plugin_scripts' ) ):
-    function vue_pollka_plugin_scripts() {
-        wp_enqueue_script( 'vue_pollka', 'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js', [], '2.5.17' );
-        wp_enqueue_script( 'vueapp_pollka', get_stylesheet_directory_uri() . '/main.js', [], '1.0', true );   
+if ( !function_exists( 'vue_template_scripts' ) ):
+    function vue_template_scripts() {
+        wp_enqueue_script( 'vue_template', 'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js', [], '2.5.17' );
+        wp_enqueue_script( 'vueapp_template', get_stylesheet_directory_uri() . '/vueTemplate.js', [], '1.0', true );   
     }
 endif;
-add_action( 'wp_enqueue_scripts', 'vue_pollka_plugin_scripts', 10 );
+add_action( 'wp_enqueue_scripts', 'vue_template_scripts', 10 );
 
 // if ( !function_exists( 'vue_geolocation_scripts' ) ):
 //     function vue_geolocation_scripts() {
@@ -31,23 +31,23 @@ add_action( 'wp_enqueue_scripts', 'vue_pollka_plugin_scripts', 10 );
 
 // END ENQUEUE PARENT ACTION
 
-function markers_endpoint( $request_data ) {
-    $args = array(
-        'post_type' => 'post',
-        'post_per_page' => -1,
-        'numberposts' => -1
-    );
+// function markers_endpoint( $request_data ) {
+//     $args = array(
+//         'post_type' => 'post',
+//         'post_per_page' => -1,
+//         'numberposts' => -1
+//     );
 
-    $posts = get_posts( $args );
-    foreach( $posts as $key => $post ) {
-        $posts[$key]->acf = get_fields($post->ID);
-    }
-    return $posts;
-}
+//     $posts = get_posts( $args );
+//     foreach( $posts as $key => $post ) {
+//         $posts[$key]->acf = get_fields($post->ID);
+//     }
+//     return $posts;
+// }
 
-add_action( 'rest_api_init', function() {
-    register_rest_route( 'markers/v1', '/post/', array(
-        'methods' => 'GET',
-        'callback' => 'markers_endpoint'
-    ));
-});
+// add_action( 'rest_api_init', function() {
+//     register_rest_route( 'markers/v1', '/post/', array(
+//         'methods' => 'GET',
+//         'callback' => 'markers_endpoint'
+//     ));
+// });

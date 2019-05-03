@@ -1,6 +1,6 @@
 ( function() {
     new Vue ( {
-        el: document.querySelector('#app'),
+        el: document.querySelector('#appTest'),
         template: `
             <div style="padding:10px; background-color:lightblue;">
                 <p>Vue template container</p>

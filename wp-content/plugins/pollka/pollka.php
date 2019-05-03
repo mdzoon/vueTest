@@ -15,8 +15,8 @@ if ( !class_exists( 'PollkaKing' ) ) {
         public function register() {
             add_shortcode( $this->shortcode_name, [$this, 'shortcode'] );
             add_action( 'wp_enqueue_scripts', [$this, 'scripts'] );
-            add_action( 'wp_ajax_nopriv_pk_submit_poll', [$this, 'submit_poll'] );
-            add_action( 'wp_ajax_nopriv_pk_get_poll_data', [$this, 'get_poll_data'] );
+            add_action( 'wp_ajax_nopriv_pk_submit_poll', [$this, 'submit_poll'] );  //wp_ajax_priv  run in admin panel
+            add_action( 'wp_ajax_nopriv_pk_get_poll_data', [$this, 'get_poll_data'] );  //wp_ajax_priv  run in admin panel
         }
 
         public function shortcode( $atts ) { 
@@ -47,7 +47,7 @@ if ( !class_exists( 'PollkaKing' ) ) {
                      wp_add_inline_script( 'pollka-king', 'window.ajaxurl = "' . admin_url( 'admin-ajax.php' ) . '"');
                      wp_enqueue_style( 'pollka-king', plugin_dir_url( __FILE__ ) . 'css/pollka-king.css', [], '0.1' );
                  }
-                 var_dump( $this->$shortcode_name ); //debug
+                //var_dump( $this->$shortcode_name ); //debug
             }
         }
 

@@ -26,7 +26,7 @@ export default {
     Badge,
     Map
   }
-},
+}
 mounted() {
   fetch('http://localhost/vueTest/wp-json/markers/v1/post')
     .then( (r) => r.json() )

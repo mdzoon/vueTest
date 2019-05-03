@@ -20,7 +20,7 @@
 
 	<div class="entry-content">
 	<h1>Test for Vue space</h1>
-	<div id="app">
+	<div id="appTest">
 	</div>
 
 		<?php
