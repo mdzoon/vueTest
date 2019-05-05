@@ -28,7 +28,7 @@ export default {
                     .addTo(map);
             });
 
-            this.marker.forEach((x) => {
+            this.markers.forEach((x) => {
                 document.getElementById(x.name)
                     .addEventListener('click', () => {
                         map.flyTo( {
@@ -54,5 +54,10 @@ export default {
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+.map { 
+    height: 500px;
+    border: #f6e767 3px solid;
+    border-radius: 7px;
 }
 </style>
