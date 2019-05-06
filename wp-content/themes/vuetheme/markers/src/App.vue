@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="appMap">
     <h1>A WordPress Headless + Vue.js Demo</h1>
     <div class="badge-container">
       <div v-for="badge in markers" :key="badge.name">
@@ -16,7 +16,7 @@
 import Badge from './components/Badge.vue'
 import Map from './components/Map.vue'
 export default {
-  name: 'app',
+  name: 'appMap',
   data(){
     return {
       markers: []
