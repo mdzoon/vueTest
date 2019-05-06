@@ -1,16 +1,17 @@
 <template>
-    <div class="badge" :id="name">
-        <img :src=img width=500/>
-        <h2>{{ name }}</h2>
-    </div>
+  <div class="badge" :id="name">
+    <img class="badge-img" :src="image" />
+    <h3>{{ name }}</h3>
+  </div>
 </template>
+
 <script>
 export default {
-    name: 'Badge',
-    props: {
-        Name: String,
-        Image: String
-    }
+  name: 'Badge',
+  props: {
+    name: String,
+    image: String
+  }
 }
 </script>
 
@@ -41,6 +42,7 @@ export default {
 h3 {
   position: relative;
   text-decoration: none;
+  font-size: medium;
 }
 h3:before {
   content: "";
@@ -61,6 +63,4 @@ h3:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
-</style>
-    
 </style>

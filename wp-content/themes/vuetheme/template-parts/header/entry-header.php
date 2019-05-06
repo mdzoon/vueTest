@@ -8,11 +8,7 @@
  */
 
 $discussion = ! is_page() && twentynineteen_can_show_post_thumbnail() ? twentynineteen_get_discussion_data() : null; ?>
-<!--BOF-->
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
-<!--EOF-->
+
 <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 <?php if ( ! is_page() ) : ?>

@@ -1,23 +1,23 @@
 <template>
-  <div id="appMap">
-        
+  <div id="app">
+    <h1>A WordPress Headless + Vue.js Demo</h1>
     <div class="badge-container">
       <div v-for="badge in markers" :key="badge.name">
         <Badge :name="badge.name" :image="badge.image" />
       </div>
     </div>
+
     <Map v-if="markers.length > 0" :markers="markers" />
-        
+    
   </div>
 </template>
 
 <script>
 import Badge from './components/Badge.vue'
 import Map from './components/Map.vue'
-
 export default {
-  name: 'appMap',
-  data() {
+  name: 'app',
+  data(){
     return {
       markers: []
     }
@@ -26,11 +26,11 @@ export default {
     Badge,
     Map
   },
-}
-mounted() {
-  fetch('http://localhost/vueTest/index.php/wp-json/markers/v1/post')
-    .then( (r) => r.json() )
-    .then( (res) => this.markers = res.map(x => x.acf) );
+  mounted(){
+    fetch('http://localhost/vueTest/wp-json/markers/v1/post')
+      .then((r) => r.json())
+      .then((res) => this.markers = res.map(x => x.acf))
+  }
 }
 </script>
 
