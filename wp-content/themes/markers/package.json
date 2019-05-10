@@ -1,6 +1,6 @@
 {
   "name": "markers",
-  "description": "WordPress and Vue.js integration - map",
+  "description": "Displaying map in Wordpress using Vue.js",
   "version": "1.0.0",
   "author": "mdzoon <mdzoon@hotmail.com>",
   "license": "MIT",

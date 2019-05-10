@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-Vue.config.productionTip = true
-
 new Vue({
-  render: h => h(App),
-}).$mount('#appMap')
+  el: '#app',
+  render: h => h(App)
+})

@@ -1,6 +1,6 @@
 # markers
 
-> WordPress and Vue.js integration - map
+> Displaying dynamic map in Wordpress using Vue.js
 
 ## Build Setup
 

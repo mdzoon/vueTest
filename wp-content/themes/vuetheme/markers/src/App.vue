@@ -1,67 +1,60 @@
 <template>
-  <div id="appMap">
-    <h1>A WordPress Headless + Vue.js Demo</h1>
-    <div class="badge-container">
-      <div v-for="badge in markers" :key="badge.name">
-        <Badge :name="badge.name" :image="badge.image" />
-      </div>
-    </div>
-
-    <Map v-if="markers.length > 0" :markers="markers" />
-    
+  <div id="app">
+    <img src="./assets/logo.png">
+    <h1>{{ msg }}</h1>
+    <h2>Essential Links</h2>
+    <ul>
+      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
+      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
+      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
+      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
+    </ul>
+    <h2>Ecosystem</h2>
+    <ul>
+      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
+      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
+      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+    </ul>
   </div>
 </template>
 
 <script>
-import Badge from './components/Badge.vue'
-import Map from './components/Map.vue'
 export default {
-  name: 'appMap',
-  data(){
+  name: 'app',
+  data () {
     return {
-      markers: []
+      msg: 'Welcome to Your Vue.js App'
     }
-  },
-  components: {
-    Badge,
-    Map
-  },
-  mounted(){
-    fetch('http://localhost/vueTest/wp-json/markers/v1/post')
-      .then((r) => r.json())
-      .then((res) => this.markers = res.map(x => x.acf))
   }
 }
 </script>
 
 <style>
-.badge-container {
-  padding-top: 60px;
-  display: flex;
-  justify-content: space-between;
-}
-html, body {
-    margin: 0;
-    height: 100%;
-    background-color: #FAFAFA;
-    font-family: 'Roboto', sans-serif;
-}
-body {
-  margin-left: 15%;
-  margin-right: 15%;
-}
-#app > h1 {
-  text-align: center;
-  color: 212121;
-}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-#footer{
   text-align: center;
-  text-decoration: none;
-  color: 212121;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
 }
 </style>
