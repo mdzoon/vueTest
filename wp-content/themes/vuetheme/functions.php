@@ -12,6 +12,8 @@ if ( !function_exists( 'ms_theme_editor_parent_css' ) ):
 endif;
 add_action( 'wp_enqueue_scripts', 'ms_theme_editor_parent_css', 10 );
 
+// END ENQUEUE PARENT ACTION
+
 if ( !function_exists( 'vue_template_scripts' ) ):
     function vue_template_scripts() {
         wp_enqueue_script( 'vue_template', 'https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js', [], '2.5.17' );
@@ -20,16 +22,10 @@ if ( !function_exists( 'vue_template_scripts' ) ):
 endif;
 add_action( 'wp_enqueue_scripts', 'vue_template_scripts', 10 );
 
-// if ( !function_exists( 'vue_geolocation_scripts' ) ):
-//     function vue_geolocation_scripts() {
-//         wp_enqueue_script('vue_geolocation', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js' );
-//         wp_enqueue_stylesheet( 'vueapp_geolocation', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' );   
-//     }
-// endif;
-// add_action( 'wp_enqueue_scripts', 'vue_geolocation_scripts', 10 );
-
-
-// END ENQUEUE PARENT ACTION
+// includes for the callbacks.
+include_once( get_stylesheet_directory() . '/includes/enqueue-scripts.php' );
+// enqueue-scripts.php.
+add_action( 'wp_enqueue_scripts', 'enqueue_markers_scripts' );
 
 function markers_endpoint( $request_data ) {
     $args = array(

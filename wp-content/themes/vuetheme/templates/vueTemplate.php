@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 
-//get_header();
+get_header();
 ?>
 
 	<section id="primary" class="content-area">
@@ -20,26 +20,27 @@
 
 			<?php
 
-			// /* Start the Loop */
-			// while ( have_posts() ) :
-			// 	the_post();
+			/* Start the Loop */
+			while ( have_posts() ) :
+				the_post();
 
-			// 	get_template_part( 'template-parts/content/content', 'page' );
+				get_template_part( 'template-parts/content/content', 'page' );
 
-			// 	// If comments are open or we have at least one comment, load up the comment template.
-			// 	if ( comments_open() || get_comments_number() ) {
-			// 		comments_template();
-			// 	}
+				// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) {
+					comments_template();
+				}
 
-			// endwhile; // End of the loop.
+			endwhile; // End of the loop.
 			?>
-			
-      <div>Map test<div>
+			<noscript>
+      	<strong>We're sorry but markers doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    	</noscript>
 			<div id="appMap"></div>
     	<!-- built files will be auto injected -->
-		
+			<div id="mapFooter">Made with ❤️ <a href="http://michaeldyczkowski.co.uk" target="_">@mdzoon</a></div>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php
-//get_footer();
+get_footer();
