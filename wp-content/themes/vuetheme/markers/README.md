@@ -1,6 +1,6 @@
 # markers
 
-> WordPress and Vue.js integration - map
+> WordPress and Vue.js integration - Maps
 
 ## Build Setup
 

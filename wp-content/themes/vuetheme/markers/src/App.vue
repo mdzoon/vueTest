@@ -50,16 +50,17 @@ body {
   margin-left: 15%;
   margin-right: 15%;
 }
-#app > h1 {
+#appMap > h1 {
   text-align: center;
   color: 212121;
 }
-#app {
+#appMap {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 #mapFooter{
+  margin-top: 20px;
   text-align: center;
   text-decoration: none;
   color: 212121;

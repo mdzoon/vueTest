@@ -22,7 +22,6 @@ export default {
         this.markers.forEach( function(marker) {
             var el = document.createElement('div');
             el.className = 'marker';
-
             new window.mapboxgl.Marker(el)
                 .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
                 .addTo(map);
@@ -49,7 +48,7 @@ export default {
 
 <style>
 .marker {
-  background-image: url('./../assets/mapbox-icon.png');
+  background-image: url('~/vueTest/wp-content/themes/vueTheme/markers/dist/mapbox-icon.png');
   background-size: cover;
   width: 50px;
   height: 50px;

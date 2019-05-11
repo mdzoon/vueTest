@@ -1,6 +1,6 @@
 {
   "name": "markers",
-  "description": "WordPress and Vue.js integration - map",
+  "description": "WordPress and Vue.js integration - Maps",
   "version": "1.0.0",
   "author": "mdzoon <mdzoon@hotmail.com>",
   "license": "MIT",
@@ -10,9 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "style-loader": "^0.23.1",
-    "vue": "^2.5.11",
-    "vue-style-loader": "^4.1.2"
+    "vue": "^2.5.11"
   },
   "browserslist": [
     "> 1%",
@@ -25,8 +23,9 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.0.5",
-    "css-loader": "^2.1.1",
+    "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
+    "html-webpack-plugin": "^3.2.0",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
