@@ -11,7 +11,7 @@ export default {
           
     window.mapboxgl.accessToken = "pk.eyJ1IjoibWR6b29uIiwiYSI6ImNqdmJhemU2eDB5a2E0Nm1tNGdqNzg2eHkifQ.q7SipboLEjFT7jtWP_WjGw";	
     
-    var map = new window.mapboxgl.Map( {
+    let map = new window.mapboxgl.Map( {
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v9',
         center: [-81.4608, 48.4758], 
@@ -19,14 +19,15 @@ export default {
     } );
     
     map.on( 'load', ( () => {
+
         this.markers.forEach( function(marker) {
-            var el = document.createElement('div');
+            let el = document.createElement('div');
             el.className = 'marker';
             new window.mapboxgl.Marker(el)
                 .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
                 .addTo(map);
         });
-        
+       
         this.markers.forEach( (x) => {
             document.getElementById( x.name )
                 .addEventListener('click', () => {

@@ -1,6 +1,6 @@
 <template>
   <div id="appMap">
-    <h1>A WordPress Headless + Vue.js Demo</h1>
+    <h1>A WordPress + Vue.js Integration Demo</h1>
     <div class="badge-container">
       <div v-for="badge in markers" :key="badge.name">
         <Badge :name="badge.name" :image="badge.image" />
