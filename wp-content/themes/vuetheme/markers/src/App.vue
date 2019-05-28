@@ -9,22 +9,30 @@
 
     <Map v-if="markers.length > 0" :markers="markers" />
     
+    <div class="infoPanel-container">
+      <div v-for="info in markers" :key="info.name">
+        <InfoPanel :name="info.name" :hero_information="info.hero_information" :hero_basic_details="info.hero_basic_details" />
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import Badge from './components/Badge.vue'
 import Map from './components/Map.vue'
+import InfoPanel from './components/InfoPanel.vue'
 export default {
   name: 'appMap',
   data(){
     return {
-      markers: []
+      markers: [],
     }
   },
   components: {
     Badge,
-    Map
+    Map,
+    InfoPanel
   },
   mounted(){
     fetch('http://localhost/vueTest/wp-json/markers/v1/post')
@@ -38,17 +46,13 @@ export default {
 .badge-container {
   padding-top: 60px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 html, body {
     margin: 0;
     height: 100%;
     background-color: #FAFAFA;
     font-family: 'Roboto', sans-serif;
-}
-body {
-  margin-left: 15%;
-  margin-right: 15%;
 }
 #appMap > h1 {
   text-align: center;

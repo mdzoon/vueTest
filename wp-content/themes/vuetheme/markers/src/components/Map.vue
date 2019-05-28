@@ -1,6 +1,8 @@
 <template>
   <div>
-      <div id='map' class='map'> </div>
+      <div id='map' class='map'>
+
+      </div>
   </div>
 </template>
 
@@ -14,31 +16,48 @@ export default {
     let map = new window.mapboxgl.Map( {
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v9',
-        center: [-81.4608, 48.4758], 
+        center: [ 0.0, 0.0 ], 
         zoom: 1
     } );
     
     map.on( 'load', ( () => {
 
         this.markers.forEach( function(marker) {
-            let el = document.createElement('div');
-            el.className = 'marker';
-            new window.mapboxgl.Marker(el)
-                .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
-                .addTo(map);
+          let name = marker.name;
+          let el = document.createElement('div');
+          el.className = "marker";
+          el.id = "marker-" + name;
+          new window.mapboxgl.Marker(el)
+            .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
+            .addTo(map);
+          el.addEventListener( 'click', () => {
+            map.flyTo( {
+              center: [parseFloat(marker.latitude), parseFloat(marker.longitude)],
+              zoom: 12
+            } )
+          ;} )
         });
-       
+        
         this.markers.forEach( (x) => {
-            document.getElementById( x.name )
-                .addEventListener('click', () => {
-                    map.flyTo( {
-                        center: [parseFloat(x.latitude), parseFloat(x.longitude)],
-                        zoom: 9
-                    } )
-                ;}
-            )
+          document.getElementById( x.name )
+            .addEventListener( 'click', () => {
+              map.flyTo( {
+                center: [parseFloat(x.latitude), parseFloat(x.longitude)],
+                zoom: 4
+              } )
+            ;} )
         })
-           
+
+/*TODO        const button = function(button) { 
+          document.createElement('button');
+          button.id = "resetBtn";
+          button.addEventListener( 'click', () => {
+            map.flyTo( {
+              center: [ 0.0, 0.0 ], 
+              zoom: 1
+            } )
+          ;} )
+        } */
     }).bind(this));
   },
   props: {
@@ -49,7 +68,8 @@ export default {
 
 <style>
 .marker {
-  background-image: url('~/vueTest/wp-content/themes/vueTheme/markers/dist/mapbox-icon.png');
+  background-image: url('http://localhost/vueTest/wp-content/uploads/2019/05/hero-marker.png');
+  /* background-image: url('./../assets/hero-marker.png'); */
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -57,7 +77,7 @@ export default {
   cursor: pointer;
 }
 .map { 
-    height: 500px;
+    height: 600px;
     border: #f6e767 3px solid;
     border-radius: 7px;
 }
