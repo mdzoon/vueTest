@@ -1,14 +1,24 @@
 <template>
   <div>
       <div id='map' class='map'>
-
-      </div>
+        <button id='resetBtn'><img src='http://localhost/vueTest/wp-content/themes/vuetheme/markers/src/assets/globe-icon.png' /></button>
+</div>
+        <div class="infoPanel-container">
+          <div v-for="info in markers" :key="info.name">
+            <InfoPanel :name="info.name" :hero_information="info.hero_information" :hero_basic_details="info.hero_basic_details" />
+          </div>
+        </div>      
+      
   </div>
 </template>
 
 <script>
+import InfoPanel from './map/InfoPanel.vue'
 export default {
   name: 'Map',
+  components: {
+    InfoPanel
+  },  
   mounted() {
           
     window.mapboxgl.accessToken = "pk.eyJ1IjoibWR6b29uIiwiYSI6ImNqdmJhemU2eDB5a2E0Nm1tNGdqNzg2eHkifQ.q7SipboLEjFT7jtWP_WjGw";	
@@ -22,11 +32,13 @@ export default {
     
     map.on( 'load', ( () => {
 
-        this.markers.forEach( function(marker) {
+        this.markers.forEach( (marker) => {
           let name = marker.name;
           let el = document.createElement('div');
           el.className = "marker";
           el.id = "marker-" + name;
+          //el.setAttribute("style", "background-image: url( './../assets/" + name + "-icon.png')");
+          el.setAttribute("style", "background-image: url( 'http://localhost/vueTest/wp-content/uploads/2019/05/" + name + "-icon.png')"); 
           new window.mapboxgl.Marker(el)
             .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
             .addTo(map);
@@ -34,31 +46,33 @@ export default {
             map.flyTo( {
               center: [parseFloat(marker.latitude), parseFloat(marker.longitude)],
               zoom: 12
-            } )
-          ;} )
+            } );
+
+          } );
+          // el.addEventListener( 'click', getInfo );
         });
         
-        this.markers.forEach( (x) => {
-          document.getElementById( x.name )
-            .addEventListener( 'click', () => {
-              map.flyTo( {
-                center: [parseFloat(x.latitude), parseFloat(x.longitude)],
-                zoom: 4
-              } )
-            ;} )
+        this.markers.forEach( (marker) => {
+          let el = document.getElementById( marker.name );
+          // el.addEventListener( 'click', getInfo );
+          el.addEventListener( 'click', () => {
+            map.flyTo( {
+              center: [parseFloat(marker.latitude), parseFloat(marker.longitude)],
+              zoom: 4
+            } );
+          } );
         })
 
-/*TODO        const button = function(button) { 
-          document.createElement('button');
-          button.id = "resetBtn";
-          button.addEventListener( 'click', () => {
-            map.flyTo( {
-              center: [ 0.0, 0.0 ], 
-              zoom: 1
-            } )
-          ;} )
-        } */
+        const resetBtn = document.getElementById('resetBtn')
+        resetBtn.addEventListener( 'click', () => {
+          map.flyTo( {
+            center: [ 0.0, 0.0 ], 
+            zoom: 1
+          } )
+        ;} )
+
     }).bind(this));
+
   },
   props: {
     markers: Array
@@ -68,17 +82,26 @@ export default {
 
 <style>
 .marker {
-  background-image: url('http://localhost/vueTest/wp-content/uploads/2019/05/hero-marker.png');
-  /* background-image: url('./../assets/hero-marker.png'); */
   background-size: cover;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
 }
-.map { 
-    height: 600px;
-    border: #f6e767 3px solid;
-    border-radius: 7px;
+.map {
+  position: relative;
+  height: 500px;
+  border: #f6e767 3px solid;
+}
+#resetBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 99;
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #f6e767;
 }
 </style>
