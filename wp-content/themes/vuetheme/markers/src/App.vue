@@ -1,32 +1,49 @@
 <template>
   <div id="appMap">
     <h1>A WordPress + Vue.js Integration Demo</h1>
-    <div class="badge-container">
-      <div v-for="badge in markers" :key="badge.name">
-        <Badge :name="badge.name" :image="badge.image" />
+    <div class="badges-container">
+      <div v-for="info in markers" :key="info.name">
+        <Badge :name="info.name" :image="info.image" @open="openPanel" />
       </div>
     </div>
 
-      <Map v-if="markers.length > 0" :markers="markers" />
+    <div class="panels-container">
+      <div v-for="info in markers" :key="info.name">
+        <Panel :name="info.name" :hero_information="info.hero_information" :hero_basic_details="info.hero_basic_details" v-if="isVisible" @close="closePanel"/>
+      </div>
+    </div>
+
+    <Map v-if="markers.length > 0" :markers="markers" />
       
   </div>
 </template>
 
 <script>
 import Badge from './components/Badge.vue'
+import Panel from './components/Panel.vue'
 import Map from './components/Map.vue'
 export default {
   name: 'appMap',
-  data(){
-    return {
-      markers: [],
-    }
-  },
   components: {
     Badge,
-    Map,
+    Panel,
+    Map
+  }, 
+  data() {
+    return {
+      markers: [],
+      isVisible: false
+    }
   },
-  mounted(){
+  methods: {
+    openPanel() {
+      this.isVisible = true
+    },
+    closePanel() {
+      this.isVisible = false
+    }
+  },
+  mounted() {
     fetch('http://localhost/vueTest/wp-json/markers/v1/post')
       .then((r) => r.json())
       .then((res) => this.markers = res.map(x => x.acf))
@@ -35,7 +52,7 @@ export default {
 </script>
 
 <style>
-.badge-container {
+.badges-container {
   padding-top: 60px;
   display: flex;
   justify-content: space-evenly;

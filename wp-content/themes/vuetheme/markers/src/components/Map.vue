@@ -1,24 +1,12 @@
 <template>
-  <div>
-      <div id='map' class='map'>
-        <button id='resetBtn'><img src='http://localhost/vueTest/wp-content/themes/vuetheme/markers/src/assets/globe-icon.png' /></button>
-</div>
-        <div class="infoPanel-container">
-          <div v-for="info in markers" :key="info.name">
-            <InfoPanel :name="info.name" :hero_information="info.hero_information" :hero_basic_details="info.hero_basic_details" />
-          </div>
-        </div>      
-      
+  <div id='map' class='map'>
+    <button id='resetBtn'><img src='http://localhost/vueTest/wp-content/themes/vuetheme/markers/src/assets/globe-icon.png' /></button> 
   </div>
 </template>
 
 <script>
-import InfoPanel from './map/InfoPanel.vue'
 export default {
   name: 'Map',
-  components: {
-    InfoPanel
-  },  
   mounted() {
           
     window.mapboxgl.accessToken = "pk.eyJ1IjoibWR6b29uIiwiYSI6ImNqdmJhemU2eDB5a2E0Nm1tNGdqNzg2eHkifQ.q7SipboLEjFT7jtWP_WjGw";	
@@ -37,8 +25,9 @@ export default {
           let el = document.createElement('div');
           el.className = "marker";
           el.id = "marker-" + name;
+          let iconName = name.replace(/ /g, '-');
           //el.setAttribute("style", "background-image: url( './../assets/" + name + "-icon.png')");
-          el.setAttribute("style", "background-image: url( 'http://localhost/vueTest/wp-content/uploads/2019/05/" + name + "-icon.png')"); 
+          el.setAttribute("style", "background-image: url( 'http://localhost/vueTest/wp-content/uploads/2019/05/" + iconName + "-icon.png')"); 
           new window.mapboxgl.Marker(el)
             .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
             .addTo(map);
@@ -54,7 +43,6 @@ export default {
         
         this.markers.forEach( (marker) => {
           let el = document.getElementById( marker.name );
-          // el.addEventListener( 'click', getInfo );
           el.addEventListener( 'click', () => {
             map.flyTo( {
               center: [parseFloat(marker.latitude), parseFloat(marker.longitude)],
@@ -76,7 +64,7 @@ export default {
   },
   props: {
     markers: Array
-  }
+  },
 }
 </script>
 
@@ -90,7 +78,7 @@ export default {
 }
 .map {
   position: relative;
-  height: 500px;
+  height: 400px;
   border: #f6e767 3px solid;
 }
 #resetBtn {

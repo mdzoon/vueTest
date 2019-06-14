@@ -1,10 +1,10 @@
+Vue.config.productionTip = true
+Vue.config.devtools = true
 
 import Vue from 'vue'
 import App from './App.vue'
 
-Vue.config.productionTip = true
-
-new Vue({
+new Vue( {
   el: "#appMap",
   render: h => h(App)
-});
+} );

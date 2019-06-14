@@ -1,7 +1,9 @@
 <template>
-  <div class="badge" :id="name">
-    <img class="badge-img" :src="image" />
-    <h3>{{ name }}</h3>
+  <div @click="open">
+    <div class="badge" :id="name">
+      <img class="badge-img" :src="image" />
+      <h3>{{ name }}</h3>
+    </div>
   </div>
 </template>
 
@@ -11,6 +13,11 @@ export default {
   props: {
     name: String,
     image: String
+  },
+  methods: {
+    open() {
+      this.$emit('open');
+    },
   }
 }
 </script>
@@ -25,6 +32,14 @@ export default {
 }
 .badge > img {
   height: 120px;
+  background: rgba(188,224,238,1);
+  background: -moz-linear-gradient(-45deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(188,224,238,1)), color-stop(20%, rgba(188,224,238,1)), color-stop(50%, rgba(242,226,78,1)), color-stop(80%, rgba(188,224,238,1)), color-stop(100%, rgba(188,224,238,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
+  background: linear-gradient(135deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bce0ee', endColorstr='#bce0ee', GradientType=1 );
 }
 @media only screen and (max-width: 800px) {
   .badge > img {
@@ -62,5 +77,14 @@ h3:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
+}
+
+.panel-fade-enter,
+.panel-fade-leave-active {
+  opacity: 0;
+}
+.panel-fade-enter-active,
+.panel-fade-leave-active {
+  transition: opacity .5s ease
 }
 </style>
