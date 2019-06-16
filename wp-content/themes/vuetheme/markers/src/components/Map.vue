@@ -78,7 +78,7 @@ export default {
 }
 .map {
   position: relative;
-  height: 400px;
+  height: 600px;
   border: #f6e767 3px solid;
 }
 #resetBtn {

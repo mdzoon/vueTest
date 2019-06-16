@@ -1,15 +1,10 @@
 <template>
   <div id="appMap">
     <h1>A WordPress + Vue.js Integration Demo</h1>
-    <div class="badges-container">
-      <div v-for="info in markers" :key="info.name">
-        <Badge :name="info.name" :image="info.image" @open="openPanel" />
-      </div>
-    </div>
-
-    <div class="panels-container">
-      <div v-for="info in markers" :key="info.name">
-        <Panel :name="info.name" :hero_information="info.hero_information" :hero_basic_details="info.hero_basic_details" v-if="isVisible" @close="closePanel"/>
+    
+    <div class="info-container">
+      <div v-for="info in markers" :key="info.name" >
+        <Info :badge="info" :panel="info" />
       </div>
     </div>
 
@@ -19,14 +14,12 @@
 </template>
 
 <script>
-import Badge from './components/Badge.vue'
-import Panel from './components/Panel.vue'
+import Info from './components/Info.vue'
 import Map from './components/Map.vue'
 export default {
   name: 'appMap',
   components: {
-    Badge,
-    Panel,
+    Info,
     Map
   }, 
   data() {
@@ -37,10 +30,10 @@ export default {
   },
   methods: {
     openPanel() {
-      this.isVisible = true
+        this.isVisible = true
     },
     closePanel() {
-      this.isVisible = false
+        this.isVisible = false
     }
   },
   mounted() {
@@ -52,10 +45,11 @@ export default {
 </script>
 
 <style>
-.badges-container {
+.info-container {
   padding-top: 60px;
   display: flex;
   justify-content: space-evenly;
+  position: relative;
 }
 html, body {
     margin: 0;

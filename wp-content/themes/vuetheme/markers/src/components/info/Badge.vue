@@ -78,13 +78,4 @@ h3:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
-
-.panel-fade-enter,
-.panel-fade-leave-active {
-  opacity: 0;
-}
-.panel-fade-enter-active,
-.panel-fade-leave-active {
-  transition: opacity .5s ease
-}
 </style>

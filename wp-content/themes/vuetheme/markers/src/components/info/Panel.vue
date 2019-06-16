@@ -1,5 +1,6 @@
 <template>
-  <div class="info" :id="'info-' + name">
+  <div class="info" :id="'info-' + name" role="dialog">
+    <button type="button" @click="close" aria-label="Close panel">X</button>
     <h4>{{ name }}</h4>
     <p>Personal information:</p>
     <ul :id="'information-' + name">
@@ -9,7 +10,6 @@
     <ul :id="'basic-details-' + name">
       <li v-for="(value, detail ) in hero_basic_details" :key="detail.hero_basic_details">{{ detail = detail.replace(/_/g, ' ') }}: {{ value }}</li>
     </ul>
-    <button type="button" @click="close" aria-label="Close panel">X</button>
   </div>
 </template>
 
@@ -31,11 +31,10 @@ export default {
 
 <style scoped>
 .info {
-  /* position: absolute;
+  position: absolute;
   right: 10px;
-  bottom: 10px; */
+  top: 252px;
   width: 40%;
-  /* display: none; */
   display: block;
   background-color: lightgray;
   padding: 0.5rem;
@@ -43,10 +42,14 @@ export default {
   border-radius: 0 0 0 10px;
   z-index: 999;
 }
-/* .open {
-  display: block;
-  width: 30%;
-} */
+
+button {
+  font-size: 150%;
+  background-color: unset;
+  color: inherit;
+  float: left;
+}
+
 ul {
   list-style: none;
 }
