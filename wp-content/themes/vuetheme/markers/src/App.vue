@@ -2,11 +2,11 @@
   <div id="appMap">
     <h1>A WordPress + Vue.js Integration Demo</h1>
     
-    <div class="info-container">
-      <div v-for="info in markers" :key="info.name" >
+    <ul class="info-container">
+      <li v-for="info in markers" :key="info.name" >
         <Info :badge="info" :panel="info" />
-      </div>
-    </div>
+      </li>
+    </ul>
 
     <Map v-if="markers.length > 0" :markers="markers" />
       
@@ -50,6 +50,9 @@ export default {
   display: flex;
   justify-content: space-evenly;
   position: relative;
+}
+.info-container li {
+  list-style-type: none;
 }
 html, body {
     margin: 0;

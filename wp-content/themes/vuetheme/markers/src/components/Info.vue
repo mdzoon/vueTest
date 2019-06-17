@@ -2,7 +2,7 @@
     <div class="info-wrapper">
         <Badge :name="badge.name" :image="badge.image" @open="openPanel" aria-label="Open panel"/>
         <transition name="panel-fade">
-            <Panel :name="panel.name" :hero_information="panel.hero_information" :hero_basic_details="panel.hero_basic_details" v-if="isVisible" @close="closePanel"/>
+            <Panel :name="panel.name" :pi_panel="panel.hero_information" :hero_information="panel.hero_information" :hero_basic_details="panel.hero_basic_details" v-if="isVisible" @close="closePanel"/>
         </transition>
     </div>
 </template>
