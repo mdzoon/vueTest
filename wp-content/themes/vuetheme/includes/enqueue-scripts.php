@@ -8,11 +8,10 @@ function enqueue_markers_scripts() {
 			//get_stylesheet_directory_uri() . '/markers/dist/build.js',
 			'http://localhost:8080/dist/build.js',
 			array(),
-				false,
+			false,
 			true
 		);
-           
-    		// enqueue the Vue app script with localized data.
+    	// enqueue the Vue app script with localized data.
 		wp_enqueue_script( 'vue_map_app' );
 	}
 }

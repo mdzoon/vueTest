@@ -1,37 +1,41 @@
 <template>
-  <div @click="open">
-    <div class="badge" :id="name">
-      <img class="badge-img" :src="image" />
-      <h3>{{ name }}</h3>
-    </div>
-  </div>
+  <li            
+    @click="openPanel(badge)"
+    aria-label="Open panel" 
+    class="badge" :id="badge.name">
+    <img class="badge-img" :src="badge.image" />
+    <h3>{{ badge.name }}</h3>
+  </li>
 </template>
 
 <script>
+import { eventBus } from '../main';
+
 export default {
   name: 'Badge',
   props: {
-    name: String,
-    image: String
+    badge: Object
   },
   methods: {
-    open() {
-      this.$emit('open');
-    },
+    openPanel(badge) {
+      let panelToOpen = badge.name
+      eventBus.openPanelEvent(panelToOpen);
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .badge {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: #212121;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: #212121;
 }
 .badge > img {
   height: 120px;
+  width: 120px;
+  margin: auto;
   background: rgba(188,224,238,1);
   background: -moz-linear-gradient(-45deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
   background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(188,224,238,1)), color-stop(20%, rgba(188,224,238,1)), color-stop(50%, rgba(242,226,78,1)), color-stop(80%, rgba(188,224,238,1)), color-stop(100%, rgba(188,224,238,1)));
@@ -41,15 +45,11 @@ export default {
   background: linear-gradient(135deg, rgba(188,224,238,1) 0%, rgba(188,224,238,1) 20%, rgba(242,226,78,1) 50%, rgba(188,224,238,1) 80%, rgba(188,224,238,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bce0ee', endColorstr='#bce0ee', GradientType=1 );
 }
-@media only screen and (max-width: 800px) {
-  .badge > img {
-    height: 60px;
-  }
-}
+
 .badge-img{
-    border-radius: 50%;
-    transition: box-shadow .3s;
-    border: 4px #f6e767 solid;
+  border-radius: 50%;
+  transition: box-shadow .3s;
+  border: 4px #f6e767 solid;
 }
 .badge-img:hover {
   box-shadow: 0 0 11px rgba(33,33,33,.6); 
@@ -58,6 +58,7 @@ h3 {
   position: relative;
   text-decoration: none;
   font-size: medium;
+  margin: 15px 0;
 }
 h3:before {
   content: "";
@@ -74,7 +75,7 @@ h3:before {
   transition: all 0.3s ease-in-out 0s;
 }
 .badge:hover > h3:before {
-  visibility: visible;
+  visibility: visible;  
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }

@@ -1,12 +1,19 @@
 <template>
   <div id='map' class='map'>
-    <button id='resetBtn'><img src='http://localhost/vueTest/wp-content/themes/vuetheme/markers/src/assets/globe-icon.png' /></button> 
+    <button id='resetBtn'><img src='http://localhost/vueTest/wp-content/themes/vuetheme/markers/src/assets/globe-icon.png' /></button>
+    <!-- <button id='resetBtn'><img src='./../assets/globe-icon.png' /></button> for production  -->
+    <app-panel v-for="panel in markers" :key="panel.name" :panel="panel"/>
   </div>
 </template>
 
 <script>
+import Panel from './Panel.vue';
+
 export default {
   name: 'Map',
+  components: {
+    'app-panel': Panel
+  },
   mounted() {
           
     window.mapboxgl.accessToken = "pk.eyJ1IjoibWR6b29uIiwiYSI6ImNqdmJhemU2eDB5a2E0Nm1tNGdqNzg2eHkifQ.q7SipboLEjFT7jtWP_WjGw";	
@@ -26,7 +33,7 @@ export default {
           el.className = "marker";
           el.id = "marker-" + name;
           let iconName = name.replace(/ /g, '-');
-          //el.setAttribute("style", "background-image: url( './../assets/" + name + "-icon.png')");
+          //el.setAttribute("style", "background-image: url( './../assets/" + name + "-icon.png')"); for production
           el.setAttribute("style", "background-image: url( 'http://localhost/vueTest/wp-content/uploads/2019/05/" + iconName + "-icon.png')"); 
           new window.mapboxgl.Marker(el)
             .setLngLat( [parseFloat(marker.latitude), parseFloat(marker.longitude)] )
@@ -38,7 +45,6 @@ export default {
             } );
 
           } );
-          // el.addEventListener( 'click', getInfo );
         });
         
         this.markers.forEach( (marker) => {
@@ -78,7 +84,7 @@ export default {
 }
 .map {
   position: relative;
-  height: 400px;
+  height: 90vh;
   border: #f6e767 3px solid;
 }
 #resetBtn {

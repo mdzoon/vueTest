@@ -3,37 +3,27 @@
     <h1>A WordPress + Vue.js Integration Demo</h1>
     
     <ul class="info-container">
-      <li v-for="info in markers" :key="info.name" >
-        <Info :badge="info" :panel="info" />
-      </li>
+        <app-badge v-for="badge in markers" :key="badge.name" :badge="badge" />
     </ul>
 
-    <Map v-if="markers.length > 0" :markers="markers" />
+    <app-map v-if="markers.length > 0" :markers="markers" />
       
   </div>
 </template>
 
 <script>
-import Info from './components/Info.vue'
-import Map from './components/Map.vue'
+import Badge from './components/Badge.vue';
+import Map from './components/Map.vue';
+
 export default {
   name: 'appMap',
   components: {
-    Info,
-    Map
+    'app-badge': Badge,
+    'app-map': Map,
   }, 
   data() {
     return {
-      markers: [],
-      isVisible: false
-    }
-  },
-  methods: {
-    openPanel() {
-        this.isVisible = true
-    },
-    closePanel() {
-        this.isVisible = false
+      markers: [], 
     }
   },
   mounted() {
@@ -46,14 +36,21 @@ export default {
 
 <style>
 .info-container {
-  padding-top: 60px;
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: space-evenly;
-  position: relative;
 }
+@media only screen and (max-width: 600px) {
+  .info-container {
+    flex-direction: column;
+  }
+}
+
 .info-container li {
   list-style-type: none;
 }
+
 html, body {
     margin: 0;
     height: 100%;
@@ -77,5 +74,18 @@ html, body {
   text-align: center;
   text-decoration: none;
   color: 212121;
+}
+
+.info-wrapper {
+ cursor: pointer;
+ position: relative;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  text-transform: capitalize;
 }
 </style>
