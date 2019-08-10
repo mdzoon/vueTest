@@ -67,13 +67,24 @@ export default {
 
 <style scoped>
 
-.panel-fade-enter,
+.panel-fade-enter {
+  opacity: 0;
+  position: absolute;
+}
+.panel-fade-enter-active {
+  transition: opacity 2s ease-out;
+  animation: scale-out 2s;
+}
 .panel-fade-leave-active {
+  transition: opacity 2s ease-in;
   opacity: 0;
 }
-.panel-fade-enter-active,
-.panel-fade-leave-active {
-  transition: opacity .9s ease;
+@keyframes scale-out {
+  from {
+    transform: scale(0) translate(100%);
+  } to {
+    transform: scale(1) translate(0);
+  }
 }
 
 .heroIntel {
