@@ -27,7 +27,7 @@ export default {
     }
   },
   mounted() {
-    fetch('http://localhost/vueTest/wp-json/markers/v1/post')
+    fetch('http://localhost/marvel_heroes_geolocation/wp-json/markers/v1/post')
       .then((r) => r.json())
       .then((res) => this.markers = res.map(x => x.acf))
   }

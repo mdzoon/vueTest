@@ -38,7 +38,7 @@ get_header();
     	</noscript>
 			<div id="appMap"></div>
     	<!-- built files will be auto injected -->
-			<div id="mapFooter">Made with ❤️ <a href="http://michaeldyczkowski.co.uk" target="_">by mdzoon</a></div>
+			<div id="mapFooter">Made with ❤️ <a href="https://michaeldyczkowski.co.uk" target="_">by mdzoon</a></div>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
