@@ -1,3 +1,5 @@
+
+
 <template>
   <div id="appMap">
     <h1>A WordPress + Vue.js Integration Demo</h1>
